@@ -5,12 +5,11 @@ An unbaked vagrant box / wrapper cookbook that uses hygieia-liatrio to install h
 * This is a wrapper cookbook using hygieia-liatrio primarily to change attributes via json in the Vagrantfile (location of mongodb in this case, mongodata, etc).
 
 Instructions:
-* Unbaked https://github.com/liatrio/liatrio-petclinic-demo-unbaked
-* Baked https://github.com/liatrio/liatrio-petclinic-demo-baked
+* Unbaked https://github.com/liatrio-chef/hygieia-petclinic-demo-unbaked
+* Baked https://github.com/liatrio-chef/hygieia-petclinic-demo-baked
 
 Supported Platforms
 -------------------
-
 CentOS 7
 
 Requirements
