@@ -19,9 +19,10 @@ Vagrant.configure(2) do |config|
   config.berkshelf.enabled = true
 
   config.vm.provision "chef_solo" do |chef|
-    chef.add_recipe "hygieia-liatrio::mongodb"
-    chef.add_recipe "hygieia-liatrio::node"
-    chef.add_recipe "hygieia-liatrio"
+    chef.add_recipe "hygieia-petclinic-demo-unbaked"
+#    chef.add_recipe "hygieia-liatrio::mongodb"
+#    chef.add_recipe "hygieia-liatrio::node"
+#    chef.add_recipe "hygieia-liatrio"
     chef.add_recipe "hygieia-liatrio::mongodb_sample_data"
     chef.add_recipe "hygieia-liatrio::apache2"
     chef.json = {
@@ -29,6 +30,7 @@ Vagrant.configure(2) do |config|
         "jdk_version" => "8"
       },
       "hygieia_liatrio" => {
+        "parent_cookbook" => "hygieia-petclinic-demo-unbaked",
         "dbname" => "dashboard",
         "dbhost" => "localhost",
         "dbport" => 27017,
