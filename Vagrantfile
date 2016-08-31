@@ -7,7 +7,8 @@ Vagrant.configure(2) do |config|
   config.vm.network :private_network, ip: "192.168.100.120"
   config.vm.network "forwarded_port", guest: 80, host: 1080
   config.vm.network "forwarded_port", guest: 3000, host: 13000
-  config.vm.network "forwarded_port", guest: 8080, host: 18088
+  config.vm.network "forwarded_port", guest: 8080, host: 18080
+  config.vm.network "forwarded_port", guest: 27017, host: 37017
 
   config.vm.provider "virtualbox" do |v|
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
