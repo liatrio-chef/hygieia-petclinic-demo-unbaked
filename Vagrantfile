@@ -11,7 +11,11 @@ Vagrant.configure(2) do |config|
   config.vm.network 'forwarded_port', guest: 27017, host: 37017
 
   config.vm.provider 'virtualbox' do |v|
+    # fix for bento box issue https://github.com/chef/bento/issues/682
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+    v.customize ['modifyvm', :id, '--cableconnected1', 'on']
+    v.customize ['modifyvm', :id, '--cableconnected2', 'on']
+
     v.customize ['modifyvm', :id, '--cpus', 2]
     v.customize ['modifyvm', :id, '--memory', '1576']
     # v.customize ["modifyvm", :id, "--name", "hygieia"]
@@ -31,6 +35,9 @@ Vagrant.configure(2) do |config|
         'jdk_version' => '8'
       },
       'hygieia_liatrio' => {
+        'user' => 'vagrant',
+        'group' => 'vagrant',
+        'home' => '/home/vagrant',
         'parent_cookbook' => 'hygieia-petclinic-demo-unbaked',
         'dbname' => 'dashboard',
         'dbhost' => 'localhost',

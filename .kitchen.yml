@@ -1,0 +1,26 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+
+platforms:
+  - name: centos-7.2
+
+driver_config:
+  require_chef_omnibus: 12.16.42
+  provision_command: 'yum install initscripts -y' 
+  run_command: '/usr/sbin/init'
+  privileged: true 
+
+suites:
+  - name: hygieia-liatrio
+    run_list:
+      - recipe[hygieia-petclinic-demo-unbaked]
+      - recipe[hygieia-liatrio::mongodb]
+      - recipe[hygieia-liatrio::default]
+      - recipe[hygieia-liatrio::node]
+      - recipe[hygieia-liatrio::hygieia-liatrio::mongodb_sample_data]
+#      - recipe[hygieia-liatrio::apache2]
+    attributes:
+      java:
+        jdk_version: "8"
